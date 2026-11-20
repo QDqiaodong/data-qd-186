@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data-qd-186"
+version = "0.1.0"
+description = "书帖拼版与装订工单"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+signature-press = "signature_press.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
