@@ -19,7 +19,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/signature-press --source fixtures/input.json --output run/report-initial.json
 ```
 
-实际6项测试通过；CLI演示生成JSON，摘要为：
+实际6项 v1 测试通过；加上 v2 打样批共 23 项测试通过。CLI 演示生成 JSON，v1 摘要为：
 
 ```json
 {
@@ -32,6 +32,24 @@ uv pip check --python .venv/bin/python
 ```
 
 输出是原子新建；演示已生成过的同名路径不能重用，复跑请换一个新文件名。非法输入与文件写入错误退出2；业务诊断的表达方式见契约。已经实际核验重复JSON键拒绝、旧结果字节不变、已有符号链接不覆盖。
+
+## v2 双版打样共用余帖
+
+显式 `--proof-batch` 启用 schema 2 的离线规划，v1 入口与输出保持不变。该模式把 1–2 个待校样版次
+各自切成非空连续段，每段可整帖新印或领用一件**物理等价**的留存旧帖（同一实物全批最多一次），
+用带库存位掩码的动态规划一次性最小化：整批新印纸张数 → 成书空白页位 → 书帖数，再按契约规定的
+`(段末逻辑序号, 领用标志, stock_id)` 字典序稳定决胜。身份是 `(section_id, page, revision)`
+三元组；旧帖号与旧全局起点只作溯源。完整输入/输出字段、几何与等价规则见
+[打样批契约](docs/proof-batch.md)。
+
+```sh
+.venv/bin/signature-press --proof-batch \
+  --source fixtures/proof-batch.json --output run/proof-report.json
+```
+
+库入口为 `signature_press.batch.process_batch(dict)`。该夹具的最优解是甲版整印 12 页、乙版领用
+唯一留存帖，整批新印 3 张纸；把乙版任一页修订号改掉后，规划器会把甲版重切成 1 / 8 / 3 并领用
+中间帖、乙版改新印，整批新印 4 张。v2 同样原子新建、拒绝覆盖，非法输入退出 2 且不留半份工单。
 
 ## 当前边界
 
