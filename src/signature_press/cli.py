@@ -4,6 +4,7 @@ import sys
 from .audit import process_audit
 from .batch import process_batch
 from .io import load, publish
+from .meter import process_meter
 from .recall import process_recall
 from .rollout import process_rollout
 from .service import process
@@ -25,6 +26,9 @@ def main(argv=None):
                        help='plan the v5 cache-bounded batch rollout with minimum downloads')
     modes.add_argument('--lot-recall', action='store_true',
                        help='reconcile a v6 paper-lot recall with the offline ledger')
+    modes.add_argument('--press-meter', action='store_true',
+                       help='close v7 shift paper slips from wrapping counter '
+                            'readings and mounting records')
     args = parser.parse_args(argv)
     try:
         data = load(args.source)
@@ -38,6 +42,8 @@ def main(argv=None):
             result = process_rollout(data)
         elif args.lot_recall:
             result = process_recall(data)
+        elif args.press_meter:
+            result = process_meter(data)
         else:
             result = process(data)
         publish(args.output, result)
