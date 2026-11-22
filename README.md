@@ -19,7 +19,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/signature-press --source fixtures/input.json --output run/report-initial.json
 ```
 
-实际6项 v1 测试通过；加上 v2 打样批共 23 项测试通过；加上 v3 装订审计共 44 项测试通过。CLI 演示生成 JSON，v1 摘要为：
+实际6项 v1 测试通过；加上 v2 打样批共 23 项测试通过；加上 v3 装订审计共 44 项测试通过；加上 v4 离线制版费结算共 77 项测试通过。CLI 演示生成 JSON，v1 摘要为：
 
 ```json
 {
@@ -67,6 +67,29 @@ uv pip check --python .venv/bin/python
 库入口为 `signature_press.audit.process_audit(dict)`。该夹具中甲册两个位置各自都能拿到正确纸、
 合起来却是 `uncertain`（乙册的 y 位要占用甲的候选纸），乙册因 y 位无合格纸可配而 `defective`。
 v3 同样原子新建、拒绝覆盖，非法输入退出 2。
+
+## v4 离线制版费结算
+
+显式 `--plate-settlement`（与 `--proof-batch`、`--binding-audit` 互斥）把多个打样工单的
+供应商制版费来账与财务结账按事件顺序离线重放。每个 `{order_id, proof_batch}` 独立走现有
+v2 规划得到执行工单；只有新印帖中含非空逻辑页的一面可计费，旧帖与全白面引用直接拒绝。
+供应商在同一账项（pool）里声明多面共用一张版时，逐面核对纸张宽高、逐页位的带修订号逻辑页
+（含空位）与完整页框；面名、帖号、纸张号、folio 不参与同版判断，印面相同却没有共同账项
+也绝不合并收费。完整输入/输出字段、分摊与重放规则见
+[制版费结算契约](docs/plate-settlement.md)。
+
+```sh
+.venv/bin/signature-press --plate-settlement \
+  --source fixtures/plate-settlement.json --output run/plate-settlement.json
+```
+
+库入口为 `signature_press.settlement.process_settlement(dict)`。`revise` 事件全量替换账项
+（版本号递增，可用 0 分空列表撤销后再重开），占用按整批替换后的状态校验；`close` 事件只快照
+当时账面出单，后续更正永不改写旧单。分摊全程 `Fraction` 精确整数运算，按面数比例取整、余数
+决胜按 ASCII `order_id`；退出账项或整账撤销以带符号负数在新单冲回，零差额留空单。夹具覆盖
+验收主流程（101 分按 2:1 摊 67/34，更正后 A51/B50，同单冲回 16、补收 16，B 待结 50）、
+退出/撤销冲回、空单、零费用账项、账项重开、同事件转移与置换、异修订/异纸型/旧帖/全白面拒绝、
+最终重复认领拒绝及输出不可覆盖；把日志截断到首次结账单独重放，首张单与完整日志逐字段一致。
 
 ## 当前边界
 

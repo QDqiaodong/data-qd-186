@@ -5,6 +5,7 @@ from .audit import process_audit
 from .batch import process_batch
 from .io import load, publish
 from .service import process
+from .settlement import process_settlement
 
 
 def main(argv=None):
@@ -16,6 +17,8 @@ def main(argv=None):
                        help='plan a schema-version-2 proof batch with retained legacy signatures')
     modes.add_argument('--binding-audit', action='store_true',
                        help='audit an executed v2 work order against post-binding observations')
+    modes.add_argument('--plate-settlement', action='store_true',
+                       help='replay offline plate-fee ledger events against v2 work orders')
     args = parser.parse_args(argv)
     try:
         data = load(args.source)
@@ -23,6 +26,8 @@ def main(argv=None):
             result = process_audit(data)
         elif args.proof_batch:
             result = process_batch(data)
+        elif args.plate_settlement:
+            result = process_settlement(data)
         else:
             result = process(data)
         publish(args.output, result)

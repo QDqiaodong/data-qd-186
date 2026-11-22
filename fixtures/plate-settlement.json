@@ -1,0 +1,213 @@
+{
+  "orders": [
+    {
+      "order_id": "A",
+      "proof_batch": {
+        "editions": [
+          {
+            "id": "ea-a1",
+            "source": {
+              "sections": [{"id": "S", "pages": 4}],
+              "signature_pages": 8,
+              "binding": "left",
+              "geometry": {
+                "sheet_width_um": 440000,
+                "sheet_height_um": 320000,
+                "leaf_width_um": 200000,
+                "leaf_height_um": 280000,
+                "margin_um": 10000,
+                "gutter_um": 10000,
+                "thickness_um": 120
+              }
+            },
+            "revisions": ["r1", "r1", "r1", "r1"]
+          },
+          {
+            "id": "ea-a2",
+            "source": {
+              "sections": [{"id": "S", "pages": 4}],
+              "signature_pages": 8,
+              "binding": "left",
+              "geometry": {
+                "sheet_width_um": 440000,
+                "sheet_height_um": 320000,
+                "leaf_width_um": 200000,
+                "leaf_height_um": 280000,
+                "margin_um": 10000,
+                "gutter_um": 10000,
+                "thickness_um": 120
+              }
+            },
+            "revisions": ["r1", "r1", "r1", "r1"]
+          }
+        ],
+        "legacy_lots": []
+      }
+    },
+    {
+      "order_id": "B",
+      "proof_batch": {
+        "editions": [
+          {
+            "id": "eb-b1",
+            "source": {
+              "sections": [{"id": "S", "pages": 4}],
+              "signature_pages": 8,
+              "binding": "left",
+              "geometry": {
+                "sheet_width_um": 440000,
+                "sheet_height_um": 320000,
+                "leaf_width_um": 200000,
+                "leaf_height_um": 280000,
+                "margin_um": 10000,
+                "gutter_um": 10000,
+                "thickness_um": 120
+              }
+            },
+            "revisions": ["r1", "r1", "r1", "r1"]
+          }
+        ],
+        "legacy_lots": []
+      }
+    }
+  ],
+  "events": [
+    {
+      "event_id": "ev-1",
+      "type": "revise",
+      "pools": [
+        {
+          "pool_id": "X",
+          "total_fen": 101,
+          "uses": [
+            {"order_id": "A", "edition_id": "ea-a1", "signature": 1, "sheet": 1, "side": "front"},
+            {"order_id": "A", "edition_id": "ea-a2", "signature": 1, "sheet": 1, "side": "front"},
+            {"order_id": "B", "edition_id": "eb-b1", "signature": 1, "sheet": 1, "side": "front"}
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "ev-2",
+      "type": "close",
+      "statement_id": "st-a1",
+      "order_id": "A"
+    },
+    {
+      "event_id": "ev-3",
+      "type": "revise",
+      "pools": [
+        {
+          "pool_id": "X",
+          "total_fen": 101,
+          "uses": [
+            {"order_id": "A", "edition_id": "ea-a1", "signature": 1, "sheet": 1, "side": "front"},
+            {"order_id": "B", "edition_id": "eb-b1", "signature": 1, "sheet": 1, "side": "front"}
+          ]
+        },
+        {
+          "pool_id": "Y",
+          "total_fen": 16,
+          "uses": [
+            {"order_id": "A", "edition_id": "ea-a2", "signature": 1, "sheet": 1, "side": "front"}
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "ev-4",
+      "type": "close",
+      "statement_id": "st-a2",
+      "order_id": "A"
+    },
+    {
+      "event_id": "ev-5",
+      "type": "close",
+      "statement_id": "st-b1",
+      "order_id": "B"
+    },
+    {
+      "event_id": "ev-6",
+      "type": "revise",
+      "pools": [
+        {
+          "pool_id": "X",
+          "total_fen": 101,
+          "uses": [
+            {"order_id": "B", "edition_id": "eb-b1", "signature": 1, "sheet": 1, "side": "front"}
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "ev-7",
+      "type": "close",
+      "statement_id": "st-a3",
+      "order_id": "A"
+    },
+    {
+      "event_id": "ev-8",
+      "type": "revise",
+      "pools": [
+        {
+          "pool_id": "Z",
+          "total_fen": 0,
+          "uses": [
+            {"order_id": "A", "edition_id": "ea-a1", "signature": 1, "sheet": 1, "side": "back"}
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "ev-9",
+      "type": "close",
+      "statement_id": "st-a4",
+      "order_id": "A"
+    },
+    {
+      "event_id": "ev-10",
+      "type": "revise",
+      "pools": [
+        {"pool_id": "Z", "total_fen": 0, "uses": []}
+      ]
+    },
+    {
+      "event_id": "ev-11",
+      "type": "close",
+      "statement_id": "st-b2",
+      "order_id": "B"
+    },
+    {
+      "event_id": "ev-12",
+      "type": "revise",
+      "pools": [
+        {"pool_id": "X", "total_fen": 0, "uses": []}
+      ]
+    },
+    {
+      "event_id": "ev-13",
+      "type": "close",
+      "statement_id": "st-b3",
+      "order_id": "B"
+    },
+    {
+      "event_id": "ev-14",
+      "type": "revise",
+      "pools": [
+        {
+          "pool_id": "X",
+          "total_fen": 9,
+          "uses": [
+            {"order_id": "B", "edition_id": "eb-b1", "signature": 1, "sheet": 1, "side": "back"}
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "ev-15",
+      "type": "close",
+      "statement_id": "st-b4",
+      "order_id": "B"
+    }
+  ]
+}
