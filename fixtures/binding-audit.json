@@ -1,0 +1,82 @@
+{
+  "proof_batch": {
+    "editions": [
+      {
+        "id": "jia",
+        "source": {
+          "sections": [{"id": "A", "pages": 8}],
+          "signature_pages": 8,
+          "binding": "left",
+          "geometry": {
+            "sheet_width_um": 440000,
+            "sheet_height_um": 320000,
+            "leaf_width_um": 200000,
+            "leaf_height_um": 280000,
+            "margin_um": 10000,
+            "gutter_um": 10000,
+            "thickness_um": 120
+          }
+        },
+        "revisions": ["ra", "ra", "ra", "ra", "ra", "ra", "ra", "ra"]
+      },
+      {
+        "id": "yi",
+        "source": {
+          "sections": [{"id": "B", "pages": 8}],
+          "signature_pages": 8,
+          "binding": "left",
+          "geometry": {
+            "sheet_width_um": 440000,
+            "sheet_height_um": 320000,
+            "leaf_width_um": 200000,
+            "leaf_height_um": 280000,
+            "margin_um": 10000,
+            "gutter_um": 10000,
+            "thickness_um": 120
+          }
+        },
+        "revisions": ["rb", "rb", "rb", "rb", "rb", "rb", "rb", "rb"]
+      }
+    ],
+    "legacy_lots": []
+  },
+  "observed_sheets": [
+    {
+      "physical_id": "P",
+      "possible_targets": [
+        {"edition_id": "jia", "signature": 1, "sheet": 1},
+        {"edition_id": "yi", "signature": 1, "sheet": 1}
+      ],
+      "front_from": {"edition_id": "jia", "signature": 1, "sheet": 1},
+      "back_from": {"edition_id": "jia", "signature": 1, "sheet": 1}
+    },
+    {
+      "physical_id": "Q",
+      "possible_targets": [
+        {"edition_id": "jia", "signature": 1, "sheet": 2},
+        {"edition_id": "yi", "signature": 1, "sheet": 1}
+      ],
+      "front_from": {"edition_id": "jia", "signature": 1, "sheet": 2},
+      "back_from": {"edition_id": "jia", "signature": 1, "sheet": 2}
+    },
+    {
+      "physical_id": "R",
+      "possible_targets": [
+        {"edition_id": "jia", "signature": 1, "sheet": 1},
+        {"edition_id": "jia", "signature": 1, "sheet": 2},
+        {"edition_id": "yi", "signature": 1, "sheet": 2}
+      ],
+      "front_from": {"edition_id": "yi", "signature": 1, "sheet": 1},
+      "back_from": {"edition_id": "yi", "signature": 1, "sheet": 1}
+    },
+    {
+      "physical_id": "S",
+      "possible_targets": [
+        {"edition_id": "yi", "signature": 1, "sheet": 1},
+        {"edition_id": "yi", "signature": 1, "sheet": 2}
+      ],
+      "front_from": {"edition_id": "yi", "signature": 1, "sheet": 2},
+      "back_from": {"edition_id": "yi", "signature": 1, "sheet": 2}
+    }
+  ]
+}

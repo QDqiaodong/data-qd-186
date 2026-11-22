@@ -19,7 +19,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/signature-press --source fixtures/input.json --output run/report-initial.json
 ```
 
-实际6项 v1 测试通过；加上 v2 打样批共 23 项测试通过。CLI 演示生成 JSON，v1 摘要为：
+实际6项 v1 测试通过；加上 v2 打样批共 23 项测试通过；加上 v3 装订审计共 44 项测试通过。CLI 演示生成 JSON，v1 摘要为：
 
 ```json
 {
@@ -50,6 +50,23 @@ uv pip check --python .venv/bin/python
 库入口为 `signature_press.batch.process_batch(dict)`。该夹具的最优解是甲版整印 12 页、乙版领用
 唯一留存帖，整批新印 3 张纸；把乙版任一页修订号改掉后，规划器会把甲版重切成 1 / 8 / 3 并领用
 中间帖、乙版改新印，整批新印 4 张。v2 同样原子新建、拒绝覆盖，非法输入退出 2 且不留半份工单。
+
+## v3 装订后离线抽检
+
+显式 `--binding-audit`（与 `--proof-batch` 互斥）对**已执行**的 v2 工单做装订后审计：输送线日志
+只给出每张实物可能进入的几个装订位置，正背面版单记录仍在。审计先用纯物流证据求出所有完整装订
+解释（完美匹配，绝不枚举），再按正背面页位内容逐位置判合格，逐版给出 `verified` / `defective` /
+`uncertain`，并为每种存在的情形附全批一对一去向证据；`defective` 附霍尔缺口证据说明调换也凑不
+出好书，物流自相矛盾时输出冲突诊断并退出 0。完整契约见 [装订审计契约](docs/binding-audit.md)。
+
+```sh
+.venv/bin/signature-press --binding-audit \
+  --source fixtures/binding-audit.json --output run/audit-report.json
+```
+
+库入口为 `signature_press.audit.process_audit(dict)`。该夹具中甲册两个位置各自都能拿到正确纸、
+合起来却是 `uncertain`（乙册的 y 位要占用甲的候选纸），乙册因 y 位无合格纸可配而 `defective`。
+v3 同样原子新建、拒绝覆盖，非法输入退出 2。
 
 ## 当前边界
 
