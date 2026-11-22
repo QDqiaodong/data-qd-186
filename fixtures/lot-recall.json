@@ -1,0 +1,50 @@
+{
+  "proof_batch": {
+    "editions": [
+      {
+        "id": "A",
+        "source": {
+          "sections": [{"id": "T", "pages": 16}],
+          "signature_pages": 8,
+          "binding": "left",
+          "geometry": {
+            "sheet_width_um": 440000,
+            "sheet_height_um": 320000,
+            "leaf_width_um": 200000,
+            "leaf_height_um": 280000,
+            "margin_um": 10000,
+            "gutter_um": 10000,
+            "thickness_um": 120
+          }
+        },
+        "revisions": ["r1", "r1", "r1", "r1", "r1", "r1", "r1", "r1",
+                      "r1", "r1", "r1", "r1", "r1", "r1", "r1", "r1"]
+      }
+    ],
+    "legacy_lots": []
+  },
+  "copies": [{"edition_id": "A", "count": 16}],
+  "print_lots": [
+    {"lot_id": "L", "edition_id": "A", "signature": 1, "count": 18},
+    {"lot_id": "M", "edition_id": "A", "signature": 2, "count": 16}
+  ],
+  "bind_spans": [
+    {"lot_id": "L", "first_piece": 8, "first_copy": 1, "count": 8, "piece_step": -1},
+    {"lot_id": "L", "first_piece": 9, "first_copy": 9, "count": 8, "piece_step": 1},
+    {"lot_id": "M", "first_piece": 1, "first_copy": 1, "count": 16, "piece_step": 1}
+  ],
+  "pack_spans": [
+    {"edition_id": "A", "first_copy": 16, "copy_step": -1,
+     "carton_series": "C", "first_carton": 100, "carton_count": 4,
+     "books_per_carton": 4}
+  ],
+  "dispatches": [
+    {"carton_series": "C", "first_carton": 103, "last_carton": 103,
+     "consignee_id": "D"}
+  ],
+  "alerts": [
+    {"lot_id": "L", "first_piece": 6, "last_piece": 7},
+    {"lot_id": "L", "first_piece": 15, "last_piece": 18},
+    {"lot_id": "M", "first_piece": 3, "last_piece": 4}
+  ]
+}

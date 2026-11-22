@@ -4,6 +4,7 @@ import sys
 from .audit import process_audit
 from .batch import process_batch
 from .io import load, publish
+from .recall import process_recall
 from .rollout import process_rollout
 from .service import process
 from .settlement import process_settlement
@@ -22,6 +23,8 @@ def main(argv=None):
                        help='replay offline plate-fee ledger events against v2 work orders')
     modes.add_argument('--cache-rollout', action='store_true',
                        help='plan the v5 cache-bounded batch rollout with minimum downloads')
+    modes.add_argument('--lot-recall', action='store_true',
+                       help='reconcile a v6 paper-lot recall with the offline ledger')
     args = parser.parse_args(argv)
     try:
         data = load(args.source)
@@ -33,6 +36,8 @@ def main(argv=None):
             result = process_settlement(data)
         elif args.cache_rollout:
             result = process_rollout(data)
+        elif args.lot_recall:
+            result = process_recall(data)
         else:
             result = process(data)
         publish(args.output, result)
