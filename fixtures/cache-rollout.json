@@ -1,0 +1,143 @@
+{
+  "capacity_bytes": 1100,
+  "batches": [
+    {
+      "batch_id": "A",
+      "current": {
+        "proof_batch": {
+          "editions": [
+            {
+              "id": "edition-A-cur",
+              "source": {
+                "sections": [{"id": "SA", "pages": 4}],
+                "signature_pages": 8,
+                "binding": "left",
+                "geometry": {
+                  "sheet_width_um": 440000,
+                  "sheet_height_um": 320000,
+                  "leaf_width_um": 200000,
+                  "leaf_height_um": 280000,
+                  "margin_um": 10000,
+                  "gutter_um": 10000,
+                  "thickness_um": 120
+                }
+              },
+              "revisions": ["r1", "r1", "r1", "r1"]
+            }
+          ],
+          "legacy_lots": []
+        },
+        "page_assets": [
+          {"section_id": "SA", "page": 1, "revision": "r1", "asset_id": "x"},
+          {"section_id": "SA", "page": 2, "revision": "r1", "asset_id": "x"},
+          {"section_id": "SA", "page": 3, "revision": "r1", "asset_id": "a"},
+          {"section_id": "SA", "page": 4, "revision": "r1", "asset_id": "a"}
+        ]
+      },
+      "next": {
+        "proof_batch": {
+          "editions": [
+            {
+              "id": "edition-A-next",
+              "source": {
+                "sections": [{"id": "PA", "pages": 4}],
+                "signature_pages": 8,
+                "binding": "left",
+                "geometry": {
+                  "sheet_width_um": 440000,
+                  "sheet_height_um": 320000,
+                  "leaf_width_um": 200000,
+                  "leaf_height_um": 280000,
+                  "margin_um": 10000,
+                  "gutter_um": 10000,
+                  "thickness_um": 120
+                }
+              },
+              "revisions": ["r2", "r2", "r2", "r2"]
+            }
+          ],
+          "legacy_lots": []
+        },
+        "page_assets": [
+          {"section_id": "PA", "page": 1, "revision": "r2", "asset_id": "p"},
+          {"section_id": "PA", "page": 2, "revision": "r2", "asset_id": "p"},
+          {"section_id": "PA", "page": 3, "revision": "r2", "asset_id": "p"},
+          {"section_id": "PA", "page": 4, "revision": "r2", "asset_id": "p"}
+        ]
+      }
+    },
+    {
+      "batch_id": "B",
+      "current": {
+        "proof_batch": {
+          "editions": [
+            {
+              "id": "edition-B-cur",
+              "source": {
+                "sections": [{"id": "SB", "pages": 4}],
+                "signature_pages": 8,
+                "binding": "left",
+                "geometry": {
+                  "sheet_width_um": 440000,
+                  "sheet_height_um": 320000,
+                  "leaf_width_um": 200000,
+                  "leaf_height_um": 280000,
+                  "margin_um": 10000,
+                  "gutter_um": 10000,
+                  "thickness_um": 120
+                }
+              },
+              "revisions": ["r1", "r1", "r1", "r1"]
+            }
+          ],
+          "legacy_lots": []
+        },
+        "page_assets": [
+          {"section_id": "SB", "page": 1, "revision": "r1", "asset_id": "x"},
+          {"section_id": "SB", "page": 2, "revision": "r1", "asset_id": "x"},
+          {"section_id": "SB", "page": 3, "revision": "r1", "asset_id": "b"},
+          {"section_id": "SB", "page": 4, "revision": "r1", "asset_id": "b"}
+        ]
+      },
+      "next": {
+        "proof_batch": {
+          "editions": [
+            {
+              "id": "edition-B-next",
+              "source": {
+                "sections": [{"id": "QB", "pages": 4}],
+                "signature_pages": 8,
+                "binding": "left",
+                "geometry": {
+                  "sheet_width_um": 440000,
+                  "sheet_height_um": 320000,
+                  "leaf_width_um": 200000,
+                  "leaf_height_um": 280000,
+                  "margin_um": 10000,
+                  "gutter_um": 10000,
+                  "thickness_um": 120
+                }
+              },
+              "revisions": ["r2", "r2", "r2", "r2"]
+            }
+          ],
+          "legacy_lots": []
+        },
+        "page_assets": [
+          {"section_id": "QB", "page": 1, "revision": "r2", "asset_id": "q"},
+          {"section_id": "QB", "page": 2, "revision": "r2", "asset_id": "q"},
+          {"section_id": "QB", "page": 3, "revision": "r2", "asset_id": "q"},
+          {"section_id": "QB", "page": 4, "revision": "r2", "asset_id": "q"}
+        ]
+      }
+    }
+  ],
+  "assets": [
+    {"asset_id": "x", "size_bytes": 300, "full_available": true, "patches": []},
+    {"asset_id": "a", "size_bytes": 100, "full_available": true, "patches": []},
+    {"asset_id": "b", "size_bytes": 300, "full_available": true, "patches": []},
+    {"asset_id": "p", "size_bytes": 200, "full_available": true,
+     "patches": [{"base_asset_id": "b", "wire_bytes": 50}]},
+    {"asset_id": "q", "size_bytes": 300, "full_available": true, "patches": []}
+  ]
+}

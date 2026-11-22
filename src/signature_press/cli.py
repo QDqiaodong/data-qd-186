@@ -4,6 +4,7 @@ import sys
 from .audit import process_audit
 from .batch import process_batch
 from .io import load, publish
+from .rollout import process_rollout
 from .service import process
 from .settlement import process_settlement
 
@@ -19,6 +20,8 @@ def main(argv=None):
                        help='audit an executed v2 work order against post-binding observations')
     modes.add_argument('--plate-settlement', action='store_true',
                        help='replay offline plate-fee ledger events against v2 work orders')
+    modes.add_argument('--cache-rollout', action='store_true',
+                       help='plan the v5 cache-bounded batch rollout with minimum downloads')
     args = parser.parse_args(argv)
     try:
         data = load(args.source)
@@ -28,6 +31,8 @@ def main(argv=None):
             result = process_batch(data)
         elif args.plate_settlement:
             result = process_settlement(data)
+        elif args.cache_rollout:
+            result = process_rollout(data)
         else:
             result = process(data)
         publish(args.output, result)
